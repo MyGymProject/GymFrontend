@@ -1,0 +1,104 @@
+.gym-login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+  position: relative;
+}
+
+.gym-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5); /* dark overlay for readability */
+}
+
+.gym-left {
+  flex: 1;
+  padding: 0 50px;
+  color: #fff;
+  z-index: 1;
+}
+
+.gym-logo {
+  font-size: 60px;
+  font-weight: bold;
+  color: #42b72a; /* energetic green */
+  margin-bottom: 20px;
+}
+
+.gym-tagline {
+  font-size: 22px;
+  max-width: 400px;
+  line-height: 1.4;
+}
+
+.gym-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
+
+.gym-login-form {
+  background: linear-gradient(145deg, #ffffff, #f9f9f9);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.gym-login-form input {
+  margin-bottom: 12px;
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.gym-login-btn {
+  background: #42b72a;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: background 0.3s ease;
+}
+
+.gym-login-btn:hover {
+  background: #36a420;
+}
+
+.gym-forgot {
+  color: #1877f2;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+}
+
+
+.right_container{
+    display: none;
+
+}
+
+.botton_container{
+    display: none;
+}
+
+ 

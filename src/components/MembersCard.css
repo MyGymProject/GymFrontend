@@ -1,0 +1,66 @@
+.member-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.member-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+.member-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.member-field {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.member-label {
+  font-weight: 600;
+  color: #555;
+}
+
+.member-value {
+  color: #333;
+}
+.member-actions {
+  display: flex;
+  justify-content: space-between; /* spread buttons evenly */
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.member-actions .btn {
+  flex: 1;              /* each button takes equal width */
+  text-align: center;   /* center text inside button */
+}
+
+
+.btn-edit {
+  background: #3498db;
+  color: #fff;
+}
+
+.btn-edit:hover {
+  background: #2980b9;
+}
+
+.btn-delete {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.btn-delete:hover {
+  background: #c0392b;
+}

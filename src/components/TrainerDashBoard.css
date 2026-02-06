@@ -1,0 +1,137 @@
+.dashboard {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  min-height: 100vh;
+  position: relative;
+}
+
+
+ 
+
+.header {
+  padding-left: 250px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+}
+
+.add-btn {
+  background: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.add-btn:hover {
+  background: #45a049;
+}
+
+.error {
+  color: #d32f2f;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+ 
+ 
+
+.member-card {
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 80%; /* card width relative to dashboard */
+  max-width: 600px;
+  height: 200px;
+  text-align: left;
+}
+
+.member-card h3 {
+  margin: 0 0 12px;
+  font-size: 26px;
+  color: #333;
+}
+
+ 
+
+.member-card p {
+  padding: auto;
+  margin: 4px 0;
+  font-size: 20px;
+  color: #555;
+}
+
+
+
+
+
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #222;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.error {
+  color: #d32f2f;
+  font-weight: bold;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.members-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center cards horizontally */
+  gap: 20px;
+  margin-top: 20px;
+}
+
+
+
+ .add-btn {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #45a049; /* use your preferred color */
+  color: #fff;
+  border: none;
+  width: 70px;   /* equal width */
+  height: 70px;  /* equal height */
+  border-radius: 50%; /* ensures circle */
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: background 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centers the + sign */
+}
+
+.add-btn:hover {
+  background: #2e7d32;
+  transform: translateX(-50%) scale(1.1);
+}
+
+
+
