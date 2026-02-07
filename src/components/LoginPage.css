@@ -1,120 +1,182 @@
+/* 1. Import Fonts: 'Oswald' for Headings, 'Roboto' for text */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@400;500&display=swap');
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 2. Main Container - Split Screen Layout */
 .gym-login-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: url('../assets/back.png') no-repeat center center; /* add your gym image */
-  background-size: cover;
-  height: 100vh;
-  font-family: "Segoe UI", Arial, sans-serif;
-  position: relative;
-  padding: 0 60px;
+  height: 100vh; /* Full screen height */
+  width: 100vw;
+  background-color: #000;
+  font-family: 'Roboto', sans-serif;
+  overflow: hidden; /* Prevents scrollbars */
 }
 
-.gym-overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.6);
-  z-index: 0; /* keep behind content */
-}
-
-.gym-left, .gym-right {
-  flex: 1;
-  z-index: 1; /* content above overlay */
-}
-
+/* 3. Left Side - Image Background */
 .gym-left {
-  color: #fff;
+  flex: 1.5; /* Takes up 60% of width */
+  position: relative;
+  /* Use a high-quality gym image here */
+  background: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  padding: 40px;
+}
+
+/* Add a dark overlay so text pops */
+.gym-left::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Darkens the image */
+  z-index: 1;
+}
+
+/* Ensure text sits on top of overlay */
+.gym-left h1, 
+.gym-left p {
+  position: relative;
+  z-index: 2;
 }
 
 .gym-logo {
-  font-size: 64px;
-  font-weight: bold;
-  color: #42b72a;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+  font-family: 'Oswald', sans-serif;
+  font-size: 5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  color: #fff;
+  /* Neon Glow Effect */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .gym-tagline {
-  font-size: 22px;
-  max-width: 420px;
-  line-height: 1.5;
-  font-weight: 300;
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #e0e0e0;
+  max-width: 500px;
 }
 
+/* 4. Right Side - The Form Area */
 .gym-right {
+  flex: 1; /* Takes up 40% of width */
+  background-color: #111; /* Dark Grey/Black */
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 40px;
 }
 
+/* 5. The Form Box */
 .gym-login-form {
-  background: #fff;
-  padding: 40px 30px;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-  width: 360px;
+  width: 100%;
+  max-width: 380px;
   display: flex;
   flex-direction: column;
-  animation: fadeInUp 0.6s ease;
 }
 
 .form-title {
-  text-align: center;
-  margin-bottom: 24px;
-  color: #222;
-  font-size: 22px;
-  font-weight: 600;
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.5rem;
+  color: #fff;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
+/* 6. Inputs */
+/* Since your JSX has raw inputs, we target them directly inside the form */
 .gym-login-form input {
-  margin-bottom: 14px;
-  padding: 14px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 15px;
-  transition: border-color 0.3s ease;
+  background-color: #222;
+  border: 1px solid #333;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 4px; /* Slight rounding */
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
 }
 
 .gym-login-form input:focus {
-  border-color: #42b72a;
-  outline: none;
+  border-color: #D4FF00; /* Neon Yellow focus border */
+  background-color: #000;
 }
 
+/* Placeholder Text Color */
+.gym-login-form input::placeholder {
+  color: #666;
+}
+
+/* 7. Button */
 .gym-login-btn {
-  background: #42b72a;
-  color: #fff;
-  font-size: 17px;
-  font-weight: 600;
-  padding: 14px;
+  background-color: #D4FF00; /* Neon Yellow/Lime */
+  color: #000;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 15px;
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
   cursor: pointer;
-  margin-bottom: 18px;
-  transition: background 0.3s ease, transform 0.2s ease;
+  letter-spacing: 1px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-top: 10px;
 }
 
 .gym-login-btn:hover {
-  background: #36a420;
-  transform: translateY(-2px);
+  transform: translateY(-2px); /* Lifts up slightly */
+  box-shadow: 0 4px 15px rgba(212, 255, 0, 0.4); /* Glow effect */
+  background-color: #cbee00;
 }
 
+/* 8. Forgot Password Link */
 .gym-forgot {
-  color: #1877f2;
-  font-size: 14px;
+  margin-top: 20px;
   text-align: center;
+  color: #888;
   text-decoration: none;
-  transition: color 0.3s ease;
+  font-size: 0.9rem;
+  transition: color 0.3s;
 }
 
 .gym-forgot:hover {
-  color: #0d5bd7;
+  color: #D4FF00; /* Turns neon on hover */
 }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+/* 9. Mobile Responsive */
+@media (max-width: 768px) {
+  .gym-login-container {
+    flex-direction: column; /* Stack them vertically on phone */
+  }
+  
+  .gym-left {
+    flex: 0.4; /* Image takes top 40% */
+    padding: 20px;
+  }
+
+  .gym-logo {
+    font-size: 3rem;
+  }
+  
+  .gym-right {
+    flex: 0.6; /* Form takes bottom 60% */
+  }
 }

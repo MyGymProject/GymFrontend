@@ -1,248 +1,422 @@
+/* =========================================
+   1. GLOBAL SETTINGS & FONTS
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Inter:wght@300;400;600&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
 /* Overall container */
 .admin-dashboard {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family: "Inter", sans-serif;
+  background-color: #000000;
+  color: #e0e0e0;
 }
 
-/* Header */
+/* =========================================
+   2. HEADER
+   ========================================= */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #1877f2;
-  color: #fff;
-  padding: 15px 30px;
+  background: #111; /* Dark Header */
+  border-bottom: 1px solid #333;
+  padding: 20px 30px;
 }
 
 .header h1 {
   margin: 0;
-  font-size: 22px;
-}
-
-.logout-btn {
-  background: #e74c3c;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 6px;
+  font-family: "Oswald", sans-serif;
+  font-size: 26px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   color: #fff;
-  cursor: pointer;
-}
-.logout-btn:hover {
-  background: #c0392b;
+  /* Neon Accent on the Title */
+  border-left: 4px solid #D4FF00; 
+  padding-left: 15px;
 }
 
-/* Middle section */
+/* Logout Button (assuming it's inside <Header />) */
+.logout-btn {
+  background: transparent;
+  border: 1px solid #ff4757;
+  padding: 8px 20px;
+  border-radius: 4px;
+  color: #ff4757;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.logout-btn:hover {
+  background: #ff4757;
+  color: white;
+}
+
+/* =========================================
+   3. LAYOUT (Middle Section)
+   ========================================= */
 .middle-container {
   flex: 1;
   display: flex;
-  overflow: hidden;
+  overflow: hidden; /* Prevents double scrollbars */
+  background-color: #0a0a0a;
 }
 
-/* Left side */
+/* Left side (Main Content) */
 .left-container {
   flex: 3;
-  background: #f4f6f8;
-  padding: 20px;
-  border-right: 1px solid #ddd;
+  padding: 30px;
   overflow-y: auto;
-}
-.tab-buttons {
-  display: flex;          /* arrange buttons side by side */
-  justify-content: space-between; /* distribute them evenly */
-  margin-bottom: 20px;
-  gap: 12px;              /* optional spacing between buttons */
+  /* Scrollbar styling */
+  scrollbar-width: thin;
+  scrollbar-color: #333 #111;
 }
 
-.tab-buttons button {
-  flex: 1;                /* each button takes equal share of width */
-  padding: 12px;
-  border: none;
-  background: #f0f0f0;
-  
-  border-radius: 6px;
-  cursor: pointer;
-  text-align: center;
-  transition: background 0.2s ease;
-       /* center text inside button */
-}
-
-.tab-buttons button:hover {
-  background: #e0e0e0;
-}
-
-/* Right side */
+/* Right side (Sidebar / Info Panel) */
 .right-container {
   flex: 1;
-  background: #fff;
-  padding: 20px;
+  background: #111;
+  padding: 30px;
+  border-left: 1px solid #333;
   overflow-y: auto;
+  box-shadow: -5px 0 15px rgba(0,0,0,0.5);
 }
 
-/* Dashboard cards */
-.dashboard-cards {
+.right-container h2 {
+  font-family: "Oswald", sans-serif;
+  color: #D4FF00; /* Neon Yellow */
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
+}
+
+.right-container p {
+  color: #aaa;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.right-container b {
+  color: #fff;
+}
+
+/* =========================================
+   4. TABS & BUTTONS
+   ========================================= */
+.tab-buttons {
   display: flex;
+  justify-content: flex-start;
   gap: 15px;
-}
-.dashboard-card {
-  flex: 1;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 15px;
-  text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  margin-bottom: 30px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 15px;
 }
 
-/* Members grid */
-.members-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
-  gap: 15px;
+/* Style the buttons inside tabs */
+.tab-buttons button {
+  padding: 12px 25px;
+  border: 1px solid #333;
+  background: #1a1a1a;
+  color: #aaa;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  flex: inherit; /* Don't stretch full width */
 }
- 
+
+.tab-buttons button:hover,
+.tab-buttons button:focus {
+  background: #D4FF00;
+  color: #000;
+  border-color: #D4FF00;
+  font-weight: bold;
+  box-shadow: 0 0 15px rgba(212, 255, 0, 0.3);
+}
+
+/* Generic Action Buttons (Add Member, etc) */
+.left-container > button {
+  background-color: #fff;
+  color: #000;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  transition: transform 0.2s;
+}
+
+.left-container > button:hover {
+  transform: translateY(-2px);
+  background-color: #D4FF00; /* Neon hover */
+}
+
+/* =========================================
+   5. DASHBOARD CARDS
+   ========================================= */
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive Grid */
+  gap: 20px;
+}
+
+.dashboard-card {
+  background: #1a1a1a; /* Dark Card */
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 25px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  border-color: #D4FF00;
+}
+
+.dashboard-card h3 {
+  margin: 0;
+  color: #888;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.dashboard-card p {
+  margin: 15px 0 0 0;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #fff;
+  font-family: "Oswald", sans-serif;
+}
+
+/* =========================================
+   6. TRAINERS & MEMBERS GRID
+   ========================================= */
+.members-grid,
 .trainers-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
-  margin-top: 24px;
+  gap: 25px;
+  margin-top: 10px;
 }
 
-.trainer-card {
-  background: #ffffff;
+/* Shared Card Styles */
+.trainer-card, 
+/* Assuming MemberCard generates a div, styling generic cards inside grid */ 
+.members-grid > div { 
+  background: #1a1a1a;
+  border: 1px solid #333;
   border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  padding: 25px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: all 0.3s ease;
 }
 
-.trainer-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+.trainer-card:hover,
+.members-grid > div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  border-color: #555;
 }
 
+/* Avatar Circle */
 .trainer-avatar {
-  width: 70px;
-  height: 70px;
-  background: linear-gradient(135deg, #1877f2, #42b72a);
-  color: #fff;
+  width: 60px;
+  height: 60px;
+  background: #000;
+  border: 2px solid #D4FF00; /* Neon Border */
+  color: #D4FF00;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 22px;
-  margin-bottom: 14px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-}
-
-.trainer-info {
-  text-align: left;          /* align text to the left */
-  width: auto;               /* take full width inside card */
-  margin-bottom: 16px;
+  font-size: 20px;
+  margin-bottom: 15px;
 }
 
 .trainer-info h3 {
-  margin: 0 0 8px 0;
-  font-size: 18px;
-  color: #222;
-  font-weight: 600;
+  margin: 0 0 10px 0;
+  font-size: 1.2rem;
+  color: #fff;
+  font-family: "Oswald", sans-serif;
 }
 
 .trainer-info div {
-  font-size: 15px;
-  color: #444;
-  margin-top: 6px;
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-top: 5px;
 }
 
-/* Make labels bold and slightly larger */
-.trainer-info div::before {
-  font-weight: 600;
-  font-size: 15px;
+.trainer-info strong {
+  color: #eee;
 }
 
+/* Card Buttons */
 .trainer-actions {
   display: flex;
-  gap: 12px;
-  width: 100%;
+  gap: 10px;
+  margin-top: 20px;
 }
 
-.trainer-actions .btn {
+.btn {
   flex: 1;
-  padding: 10px 14px;
+  padding: 10px;
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.trainer-actions .btn:hover {
-  transform: scale(1.05);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: background 0.2s;
 }
 
 .btn-delete {
-  background: #e74c3c;
-  color: #fff;
+  background: rgba(231, 76, 60, 0.2);
+  color: #ff6b6b;
+  border: 1px solid #e74c3c;
 }
-
 .btn-delete:hover {
-  background: #c0392b;
+  background: #e74c3c;
+  color: white;
 }
 
 .btn-edit {
-  background: #42b72a;
-  color: #fff;
+  background: rgba(212, 255, 0, 0.1);
+  color: #D4FF00;
+  border: 1px solid #D4FF00;
 }
-
 .btn-edit:hover {
-  background: #2e8b1f;
+  background: #D4FF00;
+  color: black;
 }
 
+/* =========================================
+   7. AMOUNTS SECTION & TABLE
+   ========================================= */
+.amounts-section h3 {
+  font-family: "Oswald", sans-serif;
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 20px;
+}
 
-/* Amounts section */
+.amounts-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Specific buttons inside amount section */
+.btn-primary {
+  background: #D4FF00;
+  color: #000;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 .amounts-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
-  background: #fff; /* white background */
-  border-radius: 6px;
+  background: #1a1a1a;
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  border: 1px solid #333;
 }
 
 .amounts-table th,
 .amounts-table td {
-  padding: 12px 15px;
+  padding: 15px;
   text-align: left;
-  border: 1px solid #ddd; /* vertical + horizontal lines */
+  border-bottom: 1px solid #333;
+  color: #ccc;
 }
 
-/* Header row: light gray instead of blue */
-.amounts-table thead {
-  background-color: #f2f2f2; /* soft gray */
-  color: #333;               /* dark text */
+.amounts-table th {
+  background-color: #222;
+  color: #D4FF00; /* Neon Headers */
   font-weight: 600;
-}
-
-/* Zebra striping for readability */
-.amounts-table tbody tr:nth-child(even) {
-  background-color: #fafafa;
+  text-transform: uppercase;
+  font-size: 0.85rem;
 }
 
 .amounts-table tbody tr:hover {
-  background-color: #f5faff; /* subtle hover highlight */
+  background-color: #252525;
 }
 
-/* Bottom footer */
+/* =========================================
+   8. FOOTER
+   ========================================= */
 .bottom-container {
-  background: #333;
-  color: #fff;
+  background: #000;
+  border-top: 1px solid #333;
+  color: #666;
   text-align: center;
-  padding: 12px;
+  padding: 15px;
+  font-size: 0.8rem;
+}
+
+/* =========================================
+   9. RESPONSIVE DESIGN (MOBILE)
+   ========================================= */
+@media (max-width: 900px) {
+  .middle-container {
+    flex-direction: column; /* Stack vertically on tablet/mobile */
+    overflow-y: auto;
+  }
+
+  .left-container {
+    flex: none;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #333;
+  }
+
+  .right-container {
+    flex: none;
+    height: auto;
+    border-left: none;
+  }
+
+  .tab-buttons {
+    flex-wrap: wrap;
+  }
+  
+  .tab-buttons button {
+    flex: 1; /* Stretch buttons on mobile */
+  }
+
+  .dashboard-cards {
+    grid-template-columns: 1fr; /* Stack cards */
+  }
 }
