@@ -15,7 +15,7 @@
 .member-name {
   font-size: 20px;
   font-weight: 600;
-  color: #333;
+  color: #f9f6f6;
   margin-bottom: 12px;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .member-value {
-  color: #333;
+  color: #f2efef;
 }
 .member-actions {
   display: flex;
