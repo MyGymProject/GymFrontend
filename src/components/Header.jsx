@@ -1,12 +1,12 @@
-// src/components/Header.jsx
-import React from "react";
-import "./Header.css"; // optional if you want separate styles
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+  const navigate = useNavigate();
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     sessionStorage.clear();
-    window.location.href = "/login"; // or use React Router's navigate
+    navigate("/login"); // client-side navigation
   };
 
   return (
