@@ -3,11 +3,12 @@ import { useState } from "react";
 
 export default function useAmounts() {
   const [error, setError] = useState(null);
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
   const addAmount = async (amountData) => {
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch("http://127.0.0.1:8000/Add_Amount", {
+      const res = await fetch(`${API_URL}/Add_Amount`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -25,7 +26,7 @@ export default function useAmounts() {
   const editAmount = async (user_id, amountData) => {
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch(`http://127.0.0.1:8000/Edit_Amount/${user_id}`, {
+      const res = await fetch(`${API_URL}/Edit_Amount/${user_id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

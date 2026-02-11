@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 export default function useTrainers() {
   const [trainers, setTrainers] = useState([]);
   const [error, setError] = useState(null);
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    fetch("http://127.0.0.1:8000/get_trainer", {
+    fetch(`${API_URL}/get_trainer`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
@@ -17,7 +18,7 @@ export default function useTrainers() {
 
   const addTrainer = async (newTrainer) => {
     const token = localStorage.getItem("token");
-    const res = await fetch("http://127.0.0.1:8000/Add_Trainer", {
+    const res = await fetch(`${API_URL}/Add_Trainer`, {
       method: "POST",
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
       body: JSON.stringify({ ...newTrainer, role: "Trainer" }), // enforce role
@@ -30,7 +31,7 @@ export default function useTrainers() {
 
   const deleteTrainer = async (email) => {
     const token = localStorage.getItem("token");
-    const res = await fetch(`http://127.0.0.1:8000/Delete_Trainer/${email}`, {
+    const res = await fetch(`${API_URL}/Delete_Trainer/${email}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -41,7 +42,7 @@ export default function useTrainers() {
 
   const updateTrainer = async (trainer) => {
     const token = localStorage.getItem("token");
-    const res = await fetch(`http://127.0.0.1:8000/update_Trainer/${trainer.email}`, {
+    const res = await fetch(`${API_URL}/update_Trainer/${trainer.email}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
       body: JSON.stringify(trainer),

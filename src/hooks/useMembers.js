@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 export default function useMembers() {
   const [members, setMembers] = useState([]);
   const [error, setError] = useState(null);
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    fetch("http://127.0.0.1:8000/get_members", {
+    fetch(`${API_URL}/get_members`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
@@ -17,7 +18,7 @@ export default function useMembers() {
 
   const addMember = async (newMember) => {
     const token = localStorage.getItem("token");
-    const res = await fetch("http://127.0.0.1:8000/Add_Member", {
+    const res = await fetch(`${API_URL}/Add_Member`, {
       method: "POST",
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
       body: JSON.stringify(newMember),
@@ -30,7 +31,7 @@ export default function useMembers() {
 
   const deleteMember = async (email) => {
     const token = localStorage.getItem("token");
-    const res = await fetch(`http://127.0.0.1:8000/Delete_Member/${email}`, {
+    const res = await fetch(`${API_URL}/Delete_Member/${email}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -42,7 +43,7 @@ export default function useMembers() {
   const updateMember = async (member) => {
   const token = localStorage.getItem("token");
   const { email, ...updateData } = member; // remove email from body
-  const res = await fetch(`http://127.0.0.1:8000/update_member/${email}`, {
+  const res = await fetch(`${API_URL}/update_member/${email}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
     body: JSON.stringify(updateData),
