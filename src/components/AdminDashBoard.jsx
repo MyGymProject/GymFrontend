@@ -9,6 +9,8 @@ import TrainerForm from "./TrainerForm";
 import AmountForm from "./AmountForm";
 import Header from "./Header";
 import Modal from "./Model";
+import useExpiredMembers from "../hooks/useExpiredMembers";
+
 import "./AdminDashBoard.css";
 
 function AdminDashboard() {
@@ -28,6 +30,8 @@ function AdminDashboard() {
   const { trainers, addTrainer, deleteTrainer, updateTrainer } = useTrainers();
   const { members, addMember, deleteMember, updateMember } = useMembers();
   const { addAmount } = useAmounts();
+  const { expiredMembers } = useExpiredMembers();
+
 
   const handleAddAmount = async e => {
     e.preventDefault();
@@ -55,6 +59,8 @@ function AdminDashboard() {
             <button onClick={()=>setTab("dashboard")}>Dashboard</button>
             <button onClick={()=>setTab("members")}>Members</button>
             <button onClick={()=>setTab("trainers")}>Trainers</button>
+            <button onClick={()=>setTab("expired")}>Expired</button>
+
           </div>
 
           <div className="tab-content">
@@ -155,6 +161,65 @@ function AdminDashboard() {
                 </div>
               </>
             )}
+
+
+            {tab==="expired" && (!selMember ? (
+  <>
+    <div className="members-grid">
+      {members
+        .filter(m => {
+          if (!m.amounts?.length) return false;
+          const latest = m.amounts.reduce((a,b)=> new Date(a.end_date) > new Date(b.end_date) ? a : b);
+          return new Date(latest.end_date) < new Date();
+        })
+        .map(m => (
+          <MemberCard
+            key={m.email}
+            member={m}
+            onDelete={deleteMember}
+            onEdit={setEditMember}
+            onClick={()=>setSelMember(m)}
+          />
+        ))}
+    </div>
+  </>
+) : (
+  <div className="amounts-section">
+    <h3>Amounts for {selMember.firstname} {selMember.lastname}</h3>
+    <div className="amounts-actions">
+      <button className="btn-secondary" onClick={()=>setSelMember(null)}>Back</button>
+      <button className="btn-primary" onClick={()=>{
+        setAmountData({ amount:0, start_date:"", end_date:"", user_id:selMember.id });
+        setShowAmountForm(true);
+      }}>Add Amount</button>
+    </div>
+    {selMember.amounts?.length ? (
+      <table className="amounts-table">
+        <thead><tr><th>Amount</th><th>Start Date</th><th>End Date</th></tr></thead>
+        <tbody>
+          {selMember.amounts.map((amt,i)=>(
+            <tr key={amt.id||i}>
+              <td>₹{amt.amount}</td>
+              <td>{amt.start_date}</td>
+              <td>{amt.end_date}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    ) : <p>No previous amounts found.</p>}
+    {showAmountForm && (
+      <Modal onClose={()=>setShowAmountForm(false)}>
+        <AmountForm
+          amountData={amountData}
+          onChange={setAmountData}
+          onSubmit={handleAddAmount}
+          onCancel={()=>setShowAmountForm(false)}
+        />
+      </Modal>
+    )}
+  </div>
+))}
+
           </div>
         </div>
 
