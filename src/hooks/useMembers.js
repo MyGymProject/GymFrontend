@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export default function useMembers() {
   const [members, setMembers] = useState([]);
   const [error, setError] = useState(null);
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+  const API_URL = import.meta.env.VITE_API_URL || 'http://16.171.9.39:80';
   console.log(API_URL)
 
   useEffect(() => {

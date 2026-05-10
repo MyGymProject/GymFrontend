@@ -32,6 +32,7 @@ export default function MemberForm({ member, onChange, onSubmit, onCancel }) {
           type="email"
           value={member.email}
           onChange={(e) => onChange({ ...member, email: e.target.value })}
+          autoComplete="new-password"
           required
         />
       </div>

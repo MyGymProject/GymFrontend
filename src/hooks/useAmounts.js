@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export default function useAmounts() {
   const [error, setError] = useState(null);
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+  const API_URL = import.meta.env.VITE_API_URL || 'http://16.171.9.39:80';
 
   const addAmount = async (amountData) => {
     const token = localStorage.getItem("token");

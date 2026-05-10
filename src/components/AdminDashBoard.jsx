@@ -49,7 +49,14 @@ function AdminDashboard() {
   if (token) {
     try { loginUser = jwtDecode(token); } catch (err) { console.error("Invalid token", err); }
   }
-
+  if (token) {
+    try { 
+      loginUser = jwtDecode(token); 
+      console.log("This is your Login User data:", loginUser); // <--- Add this
+    } catch (err) { 
+      console.error("Invalid token", err); 
+    }
+  }
   return (
     <div className="admin-dashboard">
       <header className="header"><h1>Admin Dashboard</h1><Header /></header>
@@ -150,7 +157,7 @@ function AdminDashboard() {
                       <div className="trainer-info">
                         <h3>{t.firstname} {t.lastname}</h3>
                         <div><strong>Email:</strong> {t.email}</div>
-                        <div><strong>Role:</strong> {t.role}</div>
+                        <div><strong>Role:</strong> {t.role === "string" ? "Admin" : t.role}</div>
                       </div>
                       <div className="trainer-actions">
                         <button className="btn btn-delete" onClick={()=>deleteTrainer(t.email)}>Delete</button>
@@ -227,9 +234,9 @@ function AdminDashboard() {
           <h2>Login User Info</h2>
           {loginUser ? (
             <div>
-              <p><b>Username:</b> {loginUser.username || loginUser.email}</p>
-              <p><b>Role:</b> {loginUser.role}</p>
-              <p><b>ID:</b> {loginUser.id}</p>
+              <p><b>Username:</b> {`User_${loginUser.user_id}`}</p>
+              <p><b>Role:</b> {loginUser.role === "string" ? "Admin" : loginUser.role}</p>
+              <p><b>ID:</b> {loginUser.user_id}</p>
             </div>
           ) : <p>No login user info found.</p>}
 
